@@ -2,6 +2,8 @@
 
 A responsive weather dashboard built with Next.js (App Router), TypeScript and Tailwind (shadcn/ui). It queries OpenWeather through local API route handlers to display current conditions and forecast, includes a city search, and supports Celsius/Fahrenheit toggling.
 
+👉 **Live Demo:** [verto-weather-app.netlify.app](https://verto-weather-app.netlify.app)
+
 **Additional Features:**
 - Dynamic background/theme changes based on current weather.
 - Stores the last searched city in `localStorage` for quick access.
