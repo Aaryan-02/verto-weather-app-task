@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weather App
 
-## Getting Started
+A responsive weather dashboard built with Next.js (App Router), TypeScript and Tailwind (shadcn/ui). It queries OpenWeather through local API route handlers to display current conditions and forecast, includes a city search, and supports Celsius/Fahrenheit toggling.
 
-First, run the development server:
+**Additional Features:**
+- Dynamic background/theme changes based on current weather.
+- Stores the last searched city in `localStorage` for quick access.
+- 5-day weather forecast display.
+- Temperature toggle: Celsius ↔ Fahrenheit.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 1) Quick Start (Local)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Prerequisites:
+- Node.js 18+ (recommended)
+- pnpm or npm
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Setup:
+1) Install dependencies
+- pnpm install
+  -or-
+- npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2) Create an environment file
+- Create a `.env.local` at the project root with:
+  \`\`\`
+  OPENWEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
+  \`\`\`
 
-## Learn More
+3) Run the dev server
+- pnpm dev
+  -or-
+- npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+4) Open the app
+- Visit http://localhost:3000
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 2) Project Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Common scripts:
+- Dev: `pnpm dev` or `npm run dev`
+- Build: `pnpm build` or `npm run build`
+- Start (production): `pnpm start` or `npm run start`
 
-## Deploy on Vercel
+## 3) Running Tests
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project uses Jest and React Testing Library for unit and component tests.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Run all tests locally:
+  - `node scripts/run-jest.mjs`
+
+- What gets tested:
+  - Unit tests for pure utilities (e.g., temperature conversion) are in `tests/weather-utils.test.ts`.
+  - Component tests with React Testing Library (e.g., WeatherDisplay, SearchBar) are in:
+    - `tests/components/weather-display.test.tsx`
+    - `tests/components/search-bar.test.tsx`
+
+Note: If you prefer an npm script, you can add `"test": "node scripts/run-jest.mjs"` under "scripts" in package.json for `npm test`/`pnpm test`.
+
+## 4) Configuration & Environment
+
+- Environment variables:
+  - `OPENWEATHER_API_KEY`: Your OpenWeather API key (used by server route handlers and passed to the client as needed).
+
+- API routes:
+  - `app/api/weather/route.ts` — current weather
+  - `app/api/forecast/route.ts` — forecast data
+  These routes call OpenWeather on the server to avoid exposing your API key directly in client code.
+
+## 5) Assumptions & Design Choices
+
+- Framework: Next.js App Router with server components where appropriate.
+- Styling: Tailwind CSS with shadcn/ui components.
+- Error Handling: Assumes any API error or invalid city input shows a user-friendly message.
+- Icons: React-icons for consistent iconography.
+- Testing scope: Unit tests for pure logic + React Testing Library for component rendering and behavior.
