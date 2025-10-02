@@ -74,4 +74,5 @@ Note: If you prefer an npm script, you can add `"test": "node scripts/run-jest.m
 - Styling: Tailwind CSS with shadcn/ui components.
 - Error Handling: Assumes any API error or invalid city input shows a user-friendly message.
 - Icons: React-icons for consistent iconography.
+- Custom Hook: A reusable useWeather hook manages fetching, state (loading, error, currentWeather, forecast), and exposes a searchWeather function. This keeps components clean and focused on UI.
 - Testing scope: Unit tests for pure logic + React Testing Library for component rendering and behavior.
